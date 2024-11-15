@@ -1,3 +1,4 @@
+require('newrelic');
 'use strict'
 import { logger } from './lib/logger.mjs';
 
