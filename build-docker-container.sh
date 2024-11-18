@@ -4,8 +4,7 @@ set -e
 
 usage()
 {
-    #echo "$0 -b <be-branch-name> -f <fe-branch-name> [-i <image_name>]"
-    echo "$0 -b log -f main [-i <image_name>]"   
+    echo "$0 -b <be-branch-name> -f <fe-branch-name> [-i <image_name>]" 
     exit 1
 }
 
