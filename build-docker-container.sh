@@ -43,6 +43,6 @@ cd ..
 timestamp=$(date -u "+%Y.%m.%dt%H.%M.%Sz")
 version_tag="FE.${fe_tag}_BE.${be_tag}_$timestamp"
 # Removing latest tag
-docker build --build-arg ENV NEW_RELIC_NO_CONFIG_FILE=true --build-arg ENV NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true --build-arg ENV NEW_RELIC_LOG=stdout -e NEW_RELIC_LICENSE_KEY="$LICENSE_KEY" -e NEW_RELIC_APP_NAME="translator-ui" --no-cache -t "$image_name:$version_tag" -t "$image_name" .
+docker build --no-cache -t "$image_name:$version_tag" -t "$image_name" .
 echo "restoring branch $save_branch"
 git checkout $save_branch
