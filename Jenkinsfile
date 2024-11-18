@@ -54,33 +54,5 @@ pipeline {
                 }
             }
         }
-        stage('Deploy to AWS EKS Blue') {
-            agent {
-                label 'translator && ci && deploy'
-            }
-            steps {
-                script {
-                    configFileProvider([
-                    configFile(fileId: 'values-ci.yaml', targetLocation: 'values-ncats.yaml'),
-                    configFile(fileId: 'secrets.json', targetLocation: 'secrets.json'),
-                    configFile(fileId: 'prepare.sh', targetLocation: 'prepare.sh')
-                    ]){
-                        sh '''
-                        kubectl delete deployment translator-ui -n ${NAMESPACE}
-                        aws --region ${AWS_REGION} eks update-kubeconfig --name ${KUBERNETES_BLUE_CLUSTER_NAME}
-                        /bin/bash prepare.sh
-                        cd translator-ops/ops/translator-ui/
-                        /bin/bash deploy.sh
-                        '''
-                    }
-                }
-            }
-            post {
-                always {
-                    echo " Clean up the workspace in deploy node!"
-                    cleanWs()
-                }
-            }
-        }
     }
 }
