@@ -37,6 +37,9 @@ if [ $# -ge 1 ]; then
     config_file="$1"
 fi
 
+export NEW_RELIC_LICENSE_KEY=NEW_RELIC_LICENSE_KEY_VALUE
+export NEW_RELIC_APP_NAME="NEW_RELIC_APP_NAME_VALUE"
+
 if [ $# -eq 2 ]; then
     echo "Using additional override file $2"
     node -r newrelic StartServer.mjs "$config_file" "$2"
