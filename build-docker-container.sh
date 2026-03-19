@@ -56,10 +56,7 @@ cd ..
 
 echo "Building Docker image with target: $target_stage"
 
-docker build --no-cache 
---target "$target_stage" 
--t "$image_name:$version_tag" 
--t "$image_name" .
+docker build --no-cache --target "$target_stage" -t "$image_name:$version_tag" -t "$image_name" .
 
 echo "Docker image built: $image_name:$version_tag"
 
