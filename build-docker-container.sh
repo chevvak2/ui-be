@@ -45,8 +45,9 @@ be_tag=$(git rev-parse --short HEAD)
 
 cd ui-fe
 fe_tag=$(git rev-parse --short HEAD)
-timestamp=$(date -u "+%Y.%m.%dt%H.%M.%Sz")
-version_tag="FE.${fe_tag}*BE.${be_tag}*$timestamp"
+
+timestamp=$(date -u "+%Y.%m.%d_%H.%M.%SZ")  # underscores instead of *
+version_tag="FE.${fe_tag}_BE.${be_tag}_$timestamp"
 
 # Inject build metadata
 
